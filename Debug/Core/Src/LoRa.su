@@ -1,0 +1,6 @@
+LoRa.c:25:6:LoRa_Init	16	static
+LoRa.c:35:9:isTransmitting	8	static
+LoRa.c:52:6:LoRa_Sleep	8	static
+LoRa.c:58:6:LoRa_STD	8	static
+LoRa.c:69:6:LoRa_Write	16	static
+LoRa.c:81:6:LoRa_Read	16	static
