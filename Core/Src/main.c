@@ -117,8 +117,6 @@ int main(void)
   LoRa_Init(hspi1);
   while (1)
   {
-
-	  //OpMode[0]++;
 	  LoRa_Read(0x01, mode);
 	  int k = 0;
 	  LoRa_Read(29, fall);
