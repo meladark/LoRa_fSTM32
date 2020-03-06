@@ -20,6 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "LoRa.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -101,32 +102,20 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint16_t RESET_LORA = 7;
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET); //Установить RESET LoRa в 0
-  HAL_Delay(200);
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET); //Установить RESET LoRa в 0
-  HAL_Delay(200);
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET); //Установить RESET LoRa в 0
-  HAL_Delay(50);
-
-  uint8_t OpMode[1] = {0x00};
-  uint8_t tes[1] = {0x01};
-  uint8_t mode[2] = {0x00, 0x00};
-  uint8_t fall[2] = {0x01, 0x00};
-  HAL_StatusTypeDef rc;
   LoRa_Init(hspi1);
+  char *mas = "Helora World";
   while (1)
   {
-	  LoRa_Read(0x01, mode);
-	  int k = 0;
-	  LoRa_Read(29, fall);
-	  int y = 0;
-	  if (!isTransmitting()){
-		  int l = 0;
-	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	 recive();
+	 while(headerPacket(0) == 0){
+	 }
+	 Write_Massage(mas, 12);
+	 endPacket();
+
   }
   /* USER CODE END 3 */
 }
