@@ -21,29 +21,29 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   8 .data         00000008  20000000  080037f0  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000358  20000008  080037f8  00020008  2**2
+  9 .bss          00000360  20000008  080037f8  00020008  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000360  080037f8  00020360  2**0
+ 10 ._user_heap_stack 00000600  20000368  080037f8  00020368  2**0
                   ALLOC
  11 .ARM.attributes 00000028  00000000  00000000  00020008  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00009a3c  00000000  00000000  00020030  2**0
+ 12 .debug_info   00009b30  00000000  00000000  00020030  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 00001b5a  00000000  00000000  00029a6c  2**0
+ 13 .debug_abbrev 00001b5a  00000000  00000000  00029b60  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 00000990  00000000  00000000  0002b5c8  2**3
+ 14 .debug_aranges 00000990  00000000  00000000  0002b6c0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 000008a8  00000000  00000000  0002bf58  2**3
+ 15 .debug_ranges 000008a8  00000000  00000000  0002c050  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  00013647  00000000  00000000  0002c800  2**0
+ 16 .debug_macro  00013647  00000000  00000000  0002c8f8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   000084f4  00000000  00000000  0003fe47  2**0
+ 17 .debug_line   000084f4  00000000  00000000  0003ff3f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    00077d66  00000000  00000000  0004833b  2**0
+ 18 .debug_str    00077d96  00000000  00000000  00048433  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000c00a1  2**0
+ 19 .comment      0000007b  00000000  00000000  000c01c9  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000215c  00000000  00000000  000c011c  2**2
+ 20 .debug_frame  0000215c  00000000  00000000  000c0244  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -730,7 +730,7 @@ Disassembly of section .text:
 	...
 
 0800060c <LoRa_Init>:
-uint8_t Sub[1] = {0};
+
 
 /**
  * Функция инициализации LoRa
@@ -873,7 +873,7 @@ void LoRa_Init(SPI_HandleTypeDef hspi1){
  800070e:	b004      	add	sp, #16
  8000710:	4718      	bx	r3
  8000712:	46c0      	nop			; (mov r8, r8)
- 8000714:	20000038 	.word	0x20000038
+ 8000714:	20000040 	.word	0x20000040
  8000718:	50000400 	.word	0x50000400
  800071c:	20000028 	.word	0x20000028
  8000720:	19cf0e40 	.word	0x19cf0e40
@@ -2124,7 +2124,7 @@ void LoRa_Write(uint8_t Reg, uint8_t Change){
  8000f72:	46c0      	nop			; (mov r8, r8)
  8000f74:	20000000 	.word	0x20000000
  8000f78:	20000030 	.word	0x20000030
- 8000f7c:	20000038 	.word	0x20000038
+ 8000f7c:	20000040 	.word	0x20000040
  8000f80:	20000034 	.word	0x20000034
 
 08000f84 <LoRa_Read>:
@@ -2200,7 +2200,7 @@ void LoRa_Read(uint8_t Reg, uint8_t* Ans){
  8000ffe:	bd80      	pop	{r7, pc}
  8001000:	20000000 	.word	0x20000000
  8001004:	20000030 	.word	0x20000030
- 8001008:	20000038 	.word	0x20000038
+ 8001008:	20000040 	.word	0x20000040
  800100c:	20000034 	.word	0x20000034
 
 08001010 <main>:
@@ -2283,7 +2283,7 @@ int main(void)
  8001066:	f7ff fcf3 	bl	8000a50 <endPacket>
 	 recive();
  800106a:	e7ef      	b.n	800104c <main+0x3c>
- 800106c:	20000090 	.word	0x20000090
+ 800106c:	20000098 	.word	0x20000098
  8001070:	080037b4 	.word	0x080037b4
 
 08001074 <SystemClock_Config>:
@@ -2507,7 +2507,7 @@ static void MX_SPI1_Init(void)
  80011a6:	46bd      	mov	sp, r7
  80011a8:	bd80      	pop	{r7, pc}
  80011aa:	46c0      	nop			; (mov r8, r8)
- 80011ac:	20000090 	.word	0x20000090
+ 80011ac:	20000098 	.word	0x20000098
  80011b0:	40013000 	.word	0x40013000
 
 080011b4 <MX_USB_PCD_Init>:
@@ -2570,7 +2570,7 @@ static void MX_USB_PCD_Init(void)
  80011f2:	46c0      	nop			; (mov r8, r8)
  80011f4:	46bd      	mov	sp, r7
  80011f6:	bd80      	pop	{r7, pc}
- 80011f8:	200000e8 	.word	0x200000e8
+ 80011f8:	200000f0 	.word	0x200000f0
  80011fc:	40005c00 	.word	0x40005c00
 
 08001200 <MX_GPIO_Init>:
@@ -3234,7 +3234,7 @@ LoopForever:
   ldr  r2, =_sbss
  8001500:	20000008 	.word	0x20000008
   ldr  r3, = _ebss
- 8001504:	20000360 	.word	0x20000360
+ 8001504:	20000368 	.word	0x20000368
 
 08001508 <ADC1_COMP_IRQHandler>:
  * @retval : None
@@ -3389,7 +3389,7 @@ __weak void HAL_IncTick(void)
  80015ae:	46c0      	nop			; (mov r8, r8)
  80015b0:	46bd      	mov	sp, r7
  80015b2:	bd80      	pop	{r7, pc}
- 80015b4:	2000035c 	.word	0x2000035c
+ 80015b4:	20000364 	.word	0x20000364
 
 080015b8 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other
@@ -3408,7 +3408,7 @@ __weak uint32_t HAL_GetTick(void)
  80015c2:	46bd      	mov	sp, r7
  80015c4:	bd80      	pop	{r7, pc}
  80015c6:	46c0      	nop			; (mov r8, r8)
- 80015c8:	2000035c 	.word	0x2000035c
+ 80015c8:	20000364 	.word	0x20000364
 
 080015cc <HAL_Delay>:
   *       implementations in user file.

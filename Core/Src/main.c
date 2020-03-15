@@ -115,7 +115,6 @@ int main(void)
 	 }
 	 Write_Massage(mas, 12);
 	 endPacket();
-
   }
   /* USER CODE END 3 */
 }

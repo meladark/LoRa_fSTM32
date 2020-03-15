@@ -45,7 +45,4 @@ struct{
 	uint8_t Header;
 	uint8_t Spread;
 
-	uint8_t Convert(){
-
-	}
 } install;
