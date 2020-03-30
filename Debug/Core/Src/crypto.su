@@ -1,0 +1,7 @@
+crypto.c:138:6:Magma_CP	16	static
+crypto.c:182:6:Magma_ECB_enc	96	static
+crypto.c:146:6:Magma_Init	32	static
+crypto.c:192:6:Magma_ECB_dec	96	static
+crypto.c:202:6:Magma_CTR	56	static
+crypto.c:230:6:Magma_MIC	56	static
+crypto.c:266:6:Magma_KEY_mesh	112	static

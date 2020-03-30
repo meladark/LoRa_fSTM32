@@ -21,6 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "LoRa.h"
+#include "crypto.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -68,6 +69,7 @@ static void MX_USB_PCD_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
+uint8_t all_tick = 0;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -102,19 +104,46 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  LoRa_Init(hspi1);
-  char *mas = "Helora World";
+  //LoRa_Init(hspi1);
+  //char *mas = "Helora World";
+  magma_ctx_t ctx_magma;
+  const uint8_t key[] =
+  {
+  	0xff, 0xee, 0xdd, 0xcc, 0xbb, 0xaa, 0x99, 0x88,
+  	0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11, 0x00,
+  	0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7,
+  	0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff
+  };
+  const uint8_t *data[] =
+  {
+  	(uint8_t []){0xfe, 0xdc, 0xba, 0x98, 0x76, 0x54, 0x32, 0x10},
+  	(uint8_t []){0x92, 0xde, 0xf0, 0x6b, 0x3c, 0x13, 0x0a, 0x59},
+  	(uint8_t []){0xdb, 0x54, 0xc7, 0x04, 0xf8, 0x18, 0x9d, 0x20},
+  	(uint8_t []){0x4a, 0x98, 0xfb, 0x2e, 0x67, 0xa8, 0x02, 0x4c},
+  	(uint8_t []){0x89, 0x12, 0x40, 0x9b, 0x17, 0xb5, 0x7e, 0x41}
+  };
+  Magma_Init(&ctx_magma, key);
+  uint32_t tick = 0;
+  char tic33_buf[100];
+  Magma_ECB_enc(&ctx_magma, data[0]);
   while (1)
   {
-
+	 tick = HAL_GetTick();
+	 for (int i = 0; i < 32; i++){
+		 Magma_ECB_enc(&ctx_magma, data[0]);
+		 Magma_ECB_dec(&ctx_magma, ctx_magma.out);
+	 }
+	 all_tick = HAL_GetTick() - tick;
+	 snprintf(tic33_buf, 10, "%ld ms", all_tick);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	 recive();
+	 /*recive();
 	 while(headerPacket(0) == 0){
 	 }
 	 Write_Massage(mas, 12);
-	 endPacket();
+	 endPacket();*/
+
   }
   /* USER CODE END 3 */
 }
